@@ -6,62 +6,77 @@
 /*   By: susharma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 10:20:44 by susharma          #+#    #+#             */
-/*   Updated: 2018/05/04 10:20:51 by susharma         ###   ########.fr       */
+/*   Updated: 2018/05/07 20:32:52 by susharma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*word_builder(char const *str, char c, unsigned int *index)
+static char	**ft_createtab_strsplit(char const *s, char c)
 {
-	unsigned	i;
-	unsigned	start;
-	char		*word;
+	int		i;
+	int		count;
 
-	while (str[*index] == c && str[*index] != '\0')
-		(*index)++;
-	start = *index;
-	while (str[*index] != c && str[*index] != '\0')
-		(*index)++;
-	word = ft_strnew(*index - start);
-	if (!word)
-		return (NULL);
 	i = 0;
-	while (start < *index)
+	count = 0;
+	while (s[i])
 	{
-		word[i] = str[start];
-		start++;
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] != c && s[i + 1] != '\0')
+				i++;
+		}
 		i++;
 	}
-	word[i] = '\0';
-	return (word);
+	return ((char **)malloc(sizeof(char *) * count + 1));
+}
+
+static char	*ft_returnstr_strsplit(char *tmp, char c)
+{
+	int		i;
+
+	i = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == c)
+			tmp[i] = '\0';
+		i++;
+	}
+	return (tmp);
+}
+
+static void	ft_putnull(int i[3])
+{
+	i[0] = 0;
+	i[1] = 0;
 }
 
 char		**ft_strsplit(char const *s, char c)
 {
-	unsigned	i;
-	unsigned	j;
-	unsigned	words;
-	char		**rtn;
+	char	**result;
+	char	*tmp;
+	int		i[3];
 
-	i = 0;
-	words = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			words++;
-		i++;
-	}
-	i = 0;
-	j = 0;
-	rtn = (char**)malloc(sizeof(char*) * (words + 1));
-	if (!rtn)
+	if (s == NULL)
 		return (NULL);
-	while (i < words)
+	tmp = ft_strdup(s);
+	i[2] = ft_strlen(s);
+	if (!(result = ft_createtab_strsplit(s, c)))
+		return (NULL);
+	tmp = ft_returnstr_strsplit(tmp, c);
+	ft_putnull(i);
+	while (i[0] < i[2])
 	{
-		rtn[i] = word_builder(s, c, &j);
-		i++;
+		if (!tmp[i[0]])
+			i[0]++;
+		else
+		{
+			result[i[1]] = ft_strdup(&tmp[i[0]]);
+			i[1]++;
+			i[0] += ft_strlen(&tmp[i[0]]);
+		}
 	}
-	rtn[i] = 0;
-	return (rtn);
+	result[i[1]] = NULL;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: susharma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 19:51:34 by susharma          #+#    #+#             */
-/*   Updated: 2018/05/04 10:17:27 by susharma         ###   ########.fr       */
+/*   Updated: 2018/05/07 20:51:40 by susharma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int	ft_atoi(const char *c)
 
 	i = 0;
 	sign = 1;
-	while (c[i] == ' ' || c[i] == '\n' || c[i] == '\t'
-		|| c[i] == '\r' || c[i] == '\v' || c[i] == '\f')
+	ans = 0;
+	while (c[i] == ' ' || c[i] == '\n' || c[i] == '\r' || c[i] == '\f' ||
+				c[i] == '\t' || c[i] == '\v')
 		i++;
 	if (c[i] == '-' || c[i] == '+')
 	{
@@ -31,7 +32,7 @@ int	ft_atoi(const char *c)
 	}
 	while (ft_isdigit(c[i]))
 	{
-		ans = (ans * 10) + (c[i] - 48);
+		ans = (ans * 10) + (c[i] - '0');
 		i++;
 	}
 	return (ans * sign);

@@ -6,9 +6,11 @@
 /*   By: susharma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:04:10 by susharma          #+#    #+#             */
-/*   Updated: 2018/05/07 13:04:43 by susharma         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:28:22 by susharma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strncat(char *dest, const char *src, size_t n)
 {

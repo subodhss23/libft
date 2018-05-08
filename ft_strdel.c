@@ -6,7 +6,7 @@
 /*   By: susharma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 19:55:28 by susharma          #+#    #+#             */
-/*   Updated: 2018/05/03 22:43:25 by susharma         ###   ########.fr       */
+/*   Updated: 2018/05/07 20:18:55 by susharma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_strdel(char **as)
 {
-	if (*as != NULL)
+	if (as != NULL && *as != NULL)
 	{
 		free(*as);
 		*as = NULL;

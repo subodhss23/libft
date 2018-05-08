@@ -6,7 +6,7 @@
 /*   By: susharma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:01:12 by susharma          #+#    #+#             */
-/*   Updated: 2018/05/07 13:01:28 by susharma         ###   ########.fr       */
+/*   Updated: 2018/05/07 20:22:31 by susharma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	unsigned i;
+	int		i;
+	int		i2;
 
-	i = ft_strlen(s);
-	while (i > 0)
+	i = 0;
+	i2 = 0;
+	if (s != NULL && f != NULL)
 	{
-		i--;
-		f(&s[i]);
+		i = ft_strlen(s);
+		while (i2 < i)
+		{
+			(*f)(s);
+			s++;
+			i2++;
+		}
 	}
 }
